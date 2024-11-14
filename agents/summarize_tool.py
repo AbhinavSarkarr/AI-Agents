@@ -1,7 +1,7 @@
 from .agents_base import AgentBase
 
 class SummarizeTool(AgentBase):
-    def __init__(self, name, max_retries=2, verbose=True):
+    def __init__(self, max_retries=2, verbose=True):
         super().__init__(name="SummarizeTool", max_retries=max_retries, verbose=verbose)
 
     def execute(self, text):

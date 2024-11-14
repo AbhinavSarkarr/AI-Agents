@@ -7,6 +7,7 @@ load_dotenv()
 
 
 openai.api_key = os.getenv('DEEPINFRA_API_KEY')
+openai.base_url = "https://api.deepinfra.com/v1"
 
 class AgentBase(ABC):
     def __init__(self, name, max_retries=2, verbose=True):  #max retries tell how many times the llm should try if it doesn't get output in the first call 
