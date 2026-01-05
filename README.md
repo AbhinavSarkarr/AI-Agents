@@ -457,6 +457,15 @@ This software is for educational and research purposes only. The autonomous trad
 
 ---
 
+## Author
+
+**Abhinav Sarkar**
+- GitHub: [@AbhinavSarkarr](https://github.com/AbhinavSarkarr)
+- LinkedIn: [abhinavsarkarrr](https://www.linkedin.com/in/abhinavsarkarrr)
+- Portfolio: [abhinav-ai-portfolio.lovable.app](https://abhinav-ai-portfolio.lovable.app/)
+
+---
+
 <p align="center">
   <strong>Built with AI, for AI enthusiasts</strong>
 </p>
