@@ -1,0 +1,28 @@
+# FastAPI and server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.23
+alembic==1.13.1
+
+# HTTP clients and requests
+httpx==0.25.2
+requests==2.31.0
+
+# Data processing
+pandas==2.1.4
+numpy==1.25.2
+pydantic==2.5.2
+pydantic-settings==2.1.0
+
+# Environment and config
+python-dotenv==1.0.0
+
+# Polygon API (optional)
+polygon-api-client==1.14.0
+
+# Development
+pytest==7.4.3
+pytest-asyncio==0.21.1

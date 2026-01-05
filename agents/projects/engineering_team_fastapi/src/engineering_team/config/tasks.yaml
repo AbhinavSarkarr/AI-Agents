@@ -1,0 +1,261 @@
+# Phase 1: Planning Tasks
+project_analysis_task:
+  description: >
+    Analyze the project requirements: {requirements}
+    Research any technical or market context if needed.
+    Create a comprehensive understanding of what needs to be built.
+    Break down the project into optimal tasks and modules.
+    Track what needs to be done and create a progress tracking plan.
+    Generate a detailed project report for the architects.
+    Focus on MVP with only essential features.
+  expected_output: >
+    A comprehensive project analysis report including:
+    - Clear understanding of requirements
+    - Task breakdown and module identification
+    - Progress tracking plan
+    - Key technical decisions for MVP
+  agent: project_manager
+  output_file: output/project_analysis_report.md
+
+backend_architecture_task:
+  description: >
+    Based on the project analysis, design the complete backend architecture.
+    Select appropriate design patterns (MVC, microservices, or monolithic).
+    Define all backend modules, APIs, and data models.
+    Specify module interfaces and dependencies.
+    Create detailed specifications for each backend module.
+    Use Python with FastAPI/Flask and SQLite for the MVP.
+  expected_output: >
+    A comprehensive backend architecture document including:
+    - System design pattern choice and justification
+    - Complete list of backend modules with specifications
+    - API endpoint definitions
+    - Data models and database schema
+    - Module interfaces and dependencies
+  agent: backend_architect
+  context:
+    - project_analysis_task
+  output_file: output/backend_architecture.md
+
+frontend_architecture_task:
+  description: >
+    Review the backend architecture to understand API contracts.
+    Design the frontend system using React.
+    Create component hierarchy and state management strategy.
+    Define all frontend modules aligned with backend APIs.
+    Specify component interfaces and data flow.
+    Focus on minimal UI with basic styling for MVP.
+  expected_output: >
+    A comprehensive frontend architecture document including:
+    - React component hierarchy
+    - State management approach
+    - Component specifications
+    - API integration points
+    - Data flow diagrams
+  agent: frontend_architect
+  context:
+    - backend_architecture_task
+  output_file: output/frontend_architecture.md
+
+# Phase 2: Development Tasks
+backend_module_1_task:
+  description: >
+    Implement the first set of backend modules as specified in the architecture.
+    Create a proper FastAPI application structure with:
+    - Main main.py file with FastAPI app initialization
+    - Models using SQLAlchemy with Pydantic schemas (User, Task models)
+    - Routers organized by functionality (auth, tasks)
+    - Database configuration with SQLite and SQLAlchemy
+    - Proper project structure with __init__.py files
+    - API documentation with automatic OpenAPI/Swagger
+    Follow Python best practices and FastAPI conventions.
+    Write clean, documented code with proper error handling and type hints.
+    Create a complete, runnable FastAPI application.
+  expected_output: >
+    A complete FastAPI backend application with proper structure:
+    - main.py (FastAPI application file)
+    - models/ (SQLAlchemy database models)
+    - schemas/ (Pydantic models for API)  
+    - routers/ (API endpoints)
+    - database.py (database configuration)
+    - requirements.txt (dependencies)
+    - README.md (setup instructions)
+    IMPORTANT: Create multiple organized files following FastAPI best practices.
+  agent: backend_developer_1
+  context:
+    - backend_architecture_task
+  output_file: output/backend_modules_1.py
+
+backend_module_2_task:
+  description: >
+    Build upon the FastAPI application from backend_developer_1.
+    Add advanced features and complete the backend:
+    - Additional API endpoints with query parameters (filtering, search, pagination)
+    - FastAPI dependencies for authentication and validation
+    - Custom exception handlers and logging middleware
+    - Database connection pooling and session management
+    - Background tasks and scheduled jobs
+    - API versioning and rate limiting
+    Ensure consistency with existing FastAPI code structure.
+    Focus on scalability and production readiness.
+  expected_output: >
+    Enhanced FastAPI modules including:
+    - Advanced routers with dependencies
+    - Middleware and exception handlers
+    - Database utilities and connection management
+    - Background task services
+    - Production deployment configuration
+    - Enhanced API documentation with examples
+    IMPORTANT: Extend the existing FastAPI application structure properly.
+  agent: backend_developer_2
+  context:
+    - backend_architecture_task
+    - backend_module_1_task
+  output_file: output/backend_modules_2.py
+
+frontend_module_1_task:
+  description: >
+    Create a proper React application structure:
+    - Initialize React app with proper folder structure
+    - Create main App component and routing
+    - Implement core components (TaskList, TaskItem, TaskForm)
+    - Set up state management with Context API
+    - Create API service layer for backend communication
+    - Add basic styling with CSS modules or styled components
+    Follow React best practices and modern patterns.
+    Create a complete, runnable React application.
+  expected_output: >
+    A complete React frontend application with proper structure:
+    - src/App.js (main application)
+    - src/components/ (React components)
+    - src/services/ (API calls)
+    - src/context/ (state management)
+    - src/styles/ (CSS files)
+    - package.json (dependencies)
+    - public/index.html (entry point)
+    IMPORTANT: Create multiple organized files following React conventions.
+  agent: frontend_developer_1
+  context:
+    - frontend_architecture_task
+    - backend_architecture_task
+  output_file: output/frontend_modules_1.jsx
+
+frontend_module_2_task:
+  description: >
+    Enhance the React application with advanced features:
+    - Add user authentication components (Login, Register)
+    - Implement advanced task features (filtering, search, categories)
+    - Create responsive design and better UI/UX
+    - Add form validation and error handling
+    - Implement real-time updates and notifications
+    - Add routing and navigation
+    Ensure consistency with existing code structure.
+    Focus on user experience and performance.
+  expected_output: >
+    Enhanced frontend features including:
+    - Authentication components and flows
+    - Advanced task management features
+    - Responsive design and styling
+    - Client-side routing
+    - Error handling and validation
+    IMPORTANT: Extend the existing React application structure properly.
+  agent: frontend_developer_2
+  context:
+    - frontend_architecture_task
+    - backend_architecture_task
+    - frontend_module_1_task
+  output_file: output/frontend_modules_2.jsx
+
+# Phase 3: Testing Tasks
+backend_testing_task:
+  description: >
+    Write comprehensive pytest test cases for all FastAPI backend modules.
+    Use FastAPI's TestClient for API endpoint testing.
+    Test individual functions, API endpoints, and database operations.
+    Include edge cases, error scenarios, and authentication tests.
+    Test Pydantic schema validation and SQLAlchemy models.
+    Execute tests and document any failures.
+    Work with developers to fix issues.
+    Re-test until all tests pass.
+  expected_output: >
+    Complete pytest test suite for FastAPI including:
+    - Unit tests for all backend modules and schemas
+    - Integration tests for API endpoints using TestClient
+    - Database tests with test fixtures
+    - Authentication and authorization tests
+    - Test execution results and coverage reports
+    - Documentation of any issues found and resolved
+    IMPORTANT: Use FastAPI testing patterns with pytest and TestClient.
+  agent: backend_tester
+  context:
+    - backend_module_1_task
+    - backend_module_2_task
+  output_file: output/test_backend.py
+
+frontend_testing_task:
+  description: >
+    Create Jest test cases for all React components.
+    Test component rendering and functionality.
+    Verify API integrations work correctly.
+    Test user interactions and state changes.
+    Document and help resolve any issues.
+    Ensure all tests pass.
+  expected_output: >
+    Complete Jest test suite including:
+    - Component unit tests
+    - Integration tests
+    - User interaction tests
+    - Test execution results
+    IMPORTANT: Output ONLY raw JavaScript test code without markdown formatting.
+  agent: frontend_tester
+  context:
+    - frontend_module_1_task
+    - frontend_module_2_task
+  output_file: output/test_frontend.js
+
+# Phase 4: Integration & Deployment Tasks
+integration_task:
+  description: >
+    Verify complete system integration.
+    Test end-to-end data flow between frontend and backend.
+    Validate all API connections work correctly.
+    Check data consistency across the system.
+    Document any integration issues found.
+    Ensure all components work together seamlessly.
+  expected_output: >
+    Integration test report including:
+    - End-to-end test results
+    - API integration validation
+    - Data flow verification
+    - List of issues found and resolved
+    - Confirmation of system cohesion
+  agent: integration_specialist
+  context:
+    - backend_testing_task
+    - frontend_testing_task
+  output_file: output/integration_report.md
+
+deployment_task:
+  description: >
+    Deploy the complete MVP application with FastAPI backend.
+    Set up and run the FastAPI backend server with uvicorn.
+    Build and serve the React frontend application.
+    Create deployment scripts for both backend and frontend.
+    Configure Docker containers for easy deployment.
+    Set up environment variables and configuration files.
+    Perform smoke testing to ensure everything works.
+    Document the deployment process and access instructions.
+  expected_output: >
+    Deployment package including:
+    - FastAPI backend deployment script with uvicorn
+    - React frontend build and deployment script
+    - Docker compose configuration
+    - Environment configuration files
+    - Deployment instructions for local and production
+    - Smoke test results and health check endpoints
+    - Access URLs and API documentation links
+    IMPORTANT: Include actual deployment scripts optimized for FastAPI.
+  agent: deployment_engineer
+  context:
+    - integration_task
+  output_file: output/deployment_package.md
